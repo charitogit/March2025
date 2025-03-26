@@ -48,6 +48,6 @@ public class Program
             Console.WriteLine("Failed to Log In");
         }
 
-        driver.Quit();
+      
     }
 }
