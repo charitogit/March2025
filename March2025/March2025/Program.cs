@@ -7,7 +7,6 @@ using OpenQA.Selenium.Support.UI;
 public class Program
 {
   
-
     private static void Main(string[] args)
     {
    
@@ -113,110 +112,141 @@ public class Program
         //}
 
 
-        //EDIT A RECORD
-        //Click on last record button
+        ////EDIT A RECORD
+        ////Click on last record button
 
-        IWebElement lastRecordButton = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span")); 
+        //IWebElement lastRecordButton = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span")); 
+        //lastRecordButton.Click();
+
+        ////Click Edit in last record from the list
+        //IWebElement editButton = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[5]/a[1]"));
+        //editButton.Click();
+        //Thread.Sleep(1500);
+
+        ////Select Code
+        //IWebElement codeOption = driver.FindElement(By.XPath("//*[@id=\"TimeMaterialEditForm\"]/div/div[1]/div/span[1]/span/span[1]"));
+        //codeOption.Click();
+        //Thread.Sleep(1500);
+
+        ////Select Time
+        //IWebElement timeOption = driver.FindElement(By.XPath("//*[@id=\"TypeCode_listbox\"]/li[2]")); 
+        //timeOption.Click();
+
+        ////Enter Code
+        //IWebElement codeText = driver.FindElement(By.Id("Code"));
+        //codeText.Click();
+        //codeText.Clear();
+        //codeText.SendKeys("APRIL2025");
+
+        ////Enter Description
+        //IWebElement descriptionText = driver.FindElement(By.Id("Description"));
+        //descriptionText.Click();
+        //descriptionText.Clear();
+        //descriptionText.SendKeys("Test Edit Record");
+
+        ////Enter Price
+        //IWebElement priceTag = driver.FindElement(By.XPath("//*[@id=\"TimeMaterialEditForm\"]/div/div[4]/div/span[1]/span/input[1]")); 
+        //priceTag.Click();
+        //Thread.Sleep(1500);
+
+        //IWebElement priceTextbox = driver.FindElement(By.Id("Price"));
+        //priceTextbox.Clear();
+
+        //priceTag.Click();
+        //Thread.Sleep(1500);
+        //priceTextbox.SendKeys("200");
+
+        ////Click Save 
+        //IWebElement saveButton = driver.FindElement(By.Id("SaveButton"));
+        //saveButton.Click();
+        //Thread.Sleep(3000);
+
+        ////Check if record is edited successfully
+
+        //IWebElement lastRecordButtonAfterSave = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span"));
+        //lastRecordButtonAfterSave.Click();
+
+        ////Check last record of the data table
+        //IWebElement lastCodeRecord = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[1]"));
+        //IWebElement lastType = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[2]"));
+        //IWebElement lastDescription = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[3]"));
+        //IWebElement lastPrice = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[4]")); 
+
+        ////Happy path
+        ////Edit Code
+
+        //if (lastCodeRecord.Text == "APRIL2025")
+        //{
+        //    Console.WriteLine("Code succesfully modified");
+        //}
+        //else
+        //{
+        //    Console.WriteLine("Test Failed:Code failed to be modified.");
+        //}
+
+        ////Edit Type
+        //if (lastType.Text == "T")
+        //{
+        //    Console.WriteLine("Type succesfully modified");
+        //}
+        //else
+        //{
+        //    Console.WriteLine("Test Failed:Type failed to be modified.");
+        //}
+
+        ////Edit Description
+        //if (lastDescription.Text == "Test Edit Record")
+        //{
+        //    Console.WriteLine("Description succesfully modified");
+        //}
+        //else
+        //{
+        //    Console.WriteLine("Test Failed:Description failed to be modified.");
+        //}
+
+        ////Edit Price
+        //if (lastPrice.Text == "$200.00")
+        //{
+        //    Console.WriteLine("Price succesfully modified");
+        //}
+        //else
+        //{
+        //    Console.WriteLine("Test Failed:Price failed to be modified.");
+        //}
+
+
+     
+        //DELETE A RECORD
+
+        //Click on last record button
+        IWebElement lastRecordButton = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span"));
         lastRecordButton.Click();
 
-        //Click Edit in last record from the list
-        IWebElement editButton = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[5]/a[1]"));
-        editButton.Click();
-        Thread.Sleep(1500);
+        //Click on Delete button for last record
+        IWebElement deleteButton = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[5]/a[2]"));
+        deleteButton.Click();
 
-        //Select Code
-        IWebElement codeOption = driver.FindElement(By.XPath("//*[@id=\"TimeMaterialEditForm\"]/div/div[1]/div/span[1]/span/span[1]"));
-        codeOption.Click();
-        Thread.Sleep(1500);
-       
-        //Select Time
-        IWebElement timeOption = driver.FindElement(By.XPath("//*[@id=\"TypeCode_listbox\"]/li[2]")); 
-        timeOption.Click();
+        //Click OK on Delete pop up
+        driver.SwitchTo().Alert().Accept();
 
-        //Enter Code
-        IWebElement codeText = driver.FindElement(By.Id("Code"));
-        codeText.Click();
-        codeText.Clear();
-        codeText.SendKeys("APRIL2025");
+        //Check if record is deleted by going to the last record
+        driver.Navigate().Refresh();
 
-        //Enter Description
-        IWebElement descriptionText = driver.FindElement(By.Id("Description"));
-        descriptionText.Click();
-        descriptionText.Clear();
-        descriptionText.SendKeys("Test Edit Record");
+        IWebElement lastRecordButtonPostDelete = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span")); 
+        lastRecordButtonPostDelete.Click();
+        Thread.Sleep(5000);
 
-        //Enter Price
-        IWebElement priceTag = driver.FindElement(By.XPath("//*[@id=\"TimeMaterialEditForm\"]/div/div[4]/div/span[1]/span/input[1]")); 
-        priceTag.Click();
-        Thread.Sleep(1500);
+        IWebElement code = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[1]")); 
 
-        IWebElement priceTextbox = driver.FindElement(By.Id("Price"));
-        priceTextbox.Clear();
-
-        priceTag.Click();
-        Thread.Sleep(1500);
-        priceTextbox.SendKeys("200");
-
-        //Click Save 
-        IWebElement saveButton = driver.FindElement(By.Id("SaveButton"));
-        saveButton.Click();
-        Thread.Sleep(3000);
-
-        //Check if record is edited successfully
-
-        IWebElement lastRecordButtonAfterSave = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span"));
-        lastRecordButtonAfterSave.Click();
-       
-        //Check last record of the data table
-        IWebElement lastCodeRecord = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[1]"));
-        IWebElement lastType = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[2]"));
-        IWebElement lastDescription = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[3]"));
-        IWebElement lastPrice = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[4]")); 
-
-        //Happy path
-        //Edit Code
-
-        if (lastCodeRecord.Text == "APRIL2025")
+        if (code.Text != "APRIL2025")
         {
-            Console.WriteLine("Code succesfully modified");
+            Console.WriteLine("Record deleted successfully.");
         }
         else
         {
-            Console.WriteLine("Test Failed:Code failed to be modified.");
+            Console.WriteLine("Failed to delete record.");
         }
 
-        //Edit Type
-        if (lastType.Text == "T")
-        {
-            Console.WriteLine("Type succesfully modified");
-        }
-        else
-        {
-            Console.WriteLine("Test Failed:Type failed to be modified.");
-        }
-
-        //Edit Description
-        if (lastDescription.Text == "Test Edit Record")
-        {
-            Console.WriteLine("Description succesfully modified");
-        }
-        else
-        {
-            Console.WriteLine("Test Failed:Description failed to be modified.");
-        }
-
-        //Edit Price
-        if (lastPrice.Text == "$200.00")
-        {
-            Console.WriteLine("Price succesfully modified");
-        }
-        else
-        {
-            Console.WriteLine("Test Failed:Price failed to be modified.");
-        }
-
-
-        //Delete Record
 
 
 
